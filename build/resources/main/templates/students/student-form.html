@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Sinh Viên</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="my-4">Thêm/Sửa Sinh Viên</h1>
+    <form action="/students/save" method="post">
+        <div class="form-group">
+            <label for="studentCode">Mã Sinh Viên:</label>
+            <input type="text" class="form-control" id="studentCode" name="studentCode" th:value="${student.studentCode}" required />
+        </div>
+        <div class="form-group">
+            <label for="fullName">Tên:</label>
+            <input type="text" class="form-control" id="fullName" name="fullName" th:value="${student.fullName}" required />
+        </div>
+        <div class="form-group">
+            <label for="address">Địa Chỉ:</label>
+            <input type="text" class="form-control" id="address" name="address" th:value="${student.address}" />
+        </div>
+        <input type="hidden" name="studentId" th:value="${student.studentId}" />
+        <button type="submit" class="btn btn-primary">Lưu</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Điểm Sinh Viên</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <h1 class="my-4">Thêm/Sửa Điểm Sinh Viên</h1>
+  <form action="/studentScores/save" method="post">
+    <div class="form-group">
+      <label for="studentId">ID Sinh Viên:</label>
+      <input type="number" class="form-control" id="studentId" name="studentId" th:value="${studentScore.studentId}" required />
+    </div>
+    <div class="form-group">
+      <label for="subjectId">ID Môn Học:</label>
+      <input type="number" class="form-control" id="subjectId" name="subjectId" th:value="${studentScore.subjectId}" required />
+    </div>
+    <div class="form-group">
+      <label for="score1">Điểm 1:</label>
+      <input type="number" step="0.01" class="form-control" id="score1" name="score1" th:value="${studentScore.score1}" required />
+    </div>
+    <div class="form-group">
+      <label for="score2">Điểm 2:</label>
+      <input type="number" step="0.01" class="form-control" id="score2" name="score2" th:value="${studentScore.score2}" required />
+    </div>
+    <input type="hidden" name="studentScoreId" th:value="${studentScore.studentScoreId}" />
+    <button type="submit" class="btn btn-primary">Lưu</button>
+  </form>
+</div>
+</body>
+</html>

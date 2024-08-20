@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách Điểm Sinh Viên</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="my-4">Danh sách Điểm Sinh Viên</h1>
+    <a href="/studentScores/showFormForAdd" class="btn btn-primary mb-3">Thêm Điểm Sinh Viên</a>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>ID Sinh Viên</th>
+            <th>ID Môn Học</th>
+            <th>Điểm 1</th>
+            <th>Điểm 2</th>
+            <th>Hành Động</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr id="studentScore : ${studentScores}">
+            <td id="${studentScore.studentScoreId}"></td>
+            <td id="${studentScore.studentId}"></td>
+            <td id="${studentScore.subjectId}"></td>
+            <td id="${studentScore.score1}"></td>
+            <td id="${studentScore.score2}"></td>
+<!--            <td>-->
+<!--                <a href="/studentScores/showFormForUpdate?studentScoreId=[[${studentScore.studentScoreId}]]" class="btn btn-warning">Sửa</a>-->
+<!--                <form action="/studentScores/delete" method="post" style="display:inline;">-->
+<!--                    <input type="hidden" name="studentScoreId" th:value="${studentScore.studentScoreId}" />-->
+<!--                    <button type="submit" class="btn btn-danger">Xóa</button>-->
+<!--                </form>-->
+<!--            </td>-->
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

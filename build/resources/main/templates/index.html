@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Điểm Sinh Viên</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1 class="my-4">Quản lý Điểm Sinh Viên</h1>
+
+    <!-- Phần Thêm Sinh Viên -->
+    <div class="mb-4">
+        <h3>Thêm Sinh Viên</h3>
+        <form action="/students/save" method="post">
+            <div class="form-group">
+                <label for="studentCode">Mã Sinh Viên:</label>
+                <input type="text" class="form-control" id="studentCode" name="studentCode" required />
+            </div>
+            <div class="form-group">
+                <label for="fullName">Tên:</label>
+                <input type="text" class="form-control" id="fullName" name="fullName" required />
+            </div>
+            <div class="form-group">
+                <label for="address">Địa Chỉ:</label>
+                <input type="text" class="form-control" id="address" name="address" />
+            </div>
+            <button type="submit" class="btn btn-primary">Thêm Sinh Viên</button>
+        </form>
+    </div>
+
+    <!-- Phần Thêm Điểm Sinh Viên -->
+    <div class="mb-4">
+        <h3>Thêm Điểm Sinh Viên</h3>
+        <form action="/studentScores/save" method="post">
+            <div class="form-group">
+                <label for="studentId">Sinh Viên:</label>
+                <select class="form-control" id="studentId" name="studentId" required>
+                    <!-- Thay thế bằng danh sách sinh viên động -->
+                    <option th:each="student : ${students}" th:value="${student.studentId}" th:text="${student.fullName}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="subjectId">Môn Học:</label>
+                <select class="form-control" id="subjectId" name="subjectId" required>
+                    <!-- Thay thế bằng danh sách môn học động -->
+                    <option th:each="subject : ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="score1">Điểm 1:</label>
+                <input type="number" step="0.01" class="form-control" id="score1" name="score1" required />
+            </div>
+            <div class="form-group">
+                <label for="score2">Điểm 2:</label>
+                <input type="number" step="0.01" class="form-control" id="score2" name="score2" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Thêm Điểm Sinh Viên</button>
+        </form>
+    </div>
+
+    <!-- Danh sách Điểm Sinh Viên -->
+    <h3 class="mb-4">Danh sách Điểm Sinh Viên</h3>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên Sinh Viên</th>
+            <th>Tên Môn Học</th>
+            <th>Điểm 1</th>
+            <th>Điểm 2</th>
+            <th>Tín Chỉ</th>
+            <th>Hành Động</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="studentScore : ${studentScores}">
+            <td th:text="${studentScore.studentScoreId}"></td>
+            <td th:text="${studentScore.student.fullName}"></td>
+            <td th:text="${studentScore.subject.subjectName}"></td>
+            <td th:text="${studentScore.score1}"></td>
+            <td th:text="${studentScore.score2}"></td>
+            <td th:text="${studentScore.subject.credit}"></td>
+            <td>
+                <a href="/studentScores/showFormForUpdate?studentScoreId=[[${studentScore.studentScoreId}]]" class="btn btn-warning">Sửa</a>
+                <form action="/studentScores/delete" method="post" style="display:inline;">
+                    <input type="hidden" name="studentScoreId" th:value="${studentScore.studentScoreId}" />
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
